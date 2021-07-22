@@ -8,6 +8,8 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start:main": "electron ./app/main/electron.ts",
+    "install:electron": "ELECTRON_MIRROR=https://cdn.npm.taobao.org/dist/electron/ npm install electron",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
