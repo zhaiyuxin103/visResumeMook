@@ -1,5 +1,6 @@
 import React from 'react';
-import lessStyle from './index.less';
+import './index.less';
+import Avatar from '../assets/masonite-logo.png';
 
 interface IProps {
   /**
@@ -15,7 +16,8 @@ interface IProps {
 
 function Title({ text, styles }: IProps) {
   return (
-    <div style={styles} className={lessStyle.title}>
+    <div style={styles} styleName="title">
+      <img src={Avatar} alt="" />
       {text}
     </div>
   );
