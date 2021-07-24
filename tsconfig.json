@@ -3,10 +3,7 @@
   "compilerOptions": {
     "target": "ES2016" /* 编译结果使用的版本标准: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
     "module": "commonjs" /* 编译结果使用的模块化标准: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */,
-    "lib": [
-      "ESNext",
-      "DOM"
-    ] /* 在写ts的时候支持的环境，默认是浏览器环境。如需要支持node，安装@type/node */,
+    "lib": ["ESNext", "DOM"] /* 在写ts的时候支持的环境，默认是浏览器环境。如需要支持node，安装@type/node */,
     "jsx": "react" /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */,
     "sourceMap": true,
     "strict": true,
@@ -15,8 +12,11 @@
     "esModuleInterop": true /* es6的模块化和非es6的模块化标准互通 */,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
+    // 👇 如果ts报错，添加下面这段代码
     "paths": {
-      "@src/*": ["./app/renderer/*"] // webpack 配置别名，但在TS中会报红找不到，所以tslint也需要配置
+      "@assets/*": ["./assets/*"],
+      "@src/*": ["./app/renderer/*"], // webpack 配置别名，但在TS中会报红找不到，所以tslint也需要配置
+      "@common/*": ["./app/renderer/common/*"]
     },
     "moduleResolution": "node"
   },
