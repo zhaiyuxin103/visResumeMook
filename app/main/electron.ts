@@ -2,12 +2,12 @@
  * @desc electron 主入口
  */
 
-const path = require("path");
-const { app, BrowserWindow } = require("electron");
+const path = require('path');
+const { app, BrowserWindow, ipcMain } = require('electron');
 
 function isDev() {
   // 👉 还记得我们配置中通过 webpack.DefinePlugin 定义的构建变量吗
-  return process.env.NODE_ENV === "development";
+  return process.env.NODE_ENV === 'development';
 }
 
 function createWindow() {
@@ -27,7 +27,7 @@ function createWindow() {
     // 👇 看到了吗，在开发环境下，我们加载的是运行在 7001 端口的 React
     mainWindow.loadURL(`http://127.0.0.1:7001`);
   } else {
-    mainWindow.loadURL(`file://${path.join(__dirname, "../dist/index.html")}`);
+    mainWindow.loadURL(`file://${path.join(__dirname, '../dist/index.html')}`);
   }
 
   mainWindow.webContents.openDevTools();
@@ -35,9 +35,16 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
-  app.on("activate", function () {
+  app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
     }
   });
+});
+
+const ROOT_PATH = path.join(app.getAppPath(), '../');
+
+// 👇 监听渲染进程发的消息并回复
+ipcMain.on('get-root-path', (event, arg) => {
+  event.reply('reply-root-path', ROOT_PATH);
 });

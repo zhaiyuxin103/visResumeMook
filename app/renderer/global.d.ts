@@ -13,3 +13,6 @@ declare module '*.png' {
 declare interface Window {
   pdk: string;
 }
+
+// rc-redux-model 类型声明
+declare module 'rc-redux-model';
